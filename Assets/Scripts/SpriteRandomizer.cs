@@ -14,7 +14,6 @@ public class SpriteRandomizer : MonoBehaviour
         {
             _random = new Random();
             _sprites = Resources.LoadAll<Sprite>("RandomPrograms");
-            print(_sprites.Length);
         }
 
         gameObject.GetComponent<SpriteRenderer>().sprite = _sprites[_random.Next(0, _sprites.Length)];
