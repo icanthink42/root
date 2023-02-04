@@ -27,7 +27,5 @@ public class SpriteRandomizer : MonoBehaviour
         int randomIndex = _random.Next(0, _availableSprites.Count);
         gameObject.GetComponent<SpriteRenderer>().sprite = _availableSprites[randomIndex];
         _availableSprites.RemoveAt(randomIndex);
-        print(_availableSprites.Count);
-        
     }
 }
