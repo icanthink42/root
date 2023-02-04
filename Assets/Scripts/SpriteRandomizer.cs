@@ -21,7 +21,6 @@ public class SpriteRandomizer : MonoBehaviour
 
         if (_availableSprites.Count < 1)
         {
-            print("a");
             _availableSprites = (_sprites.Clone() as Sprite[]).ToList();
         }
 
