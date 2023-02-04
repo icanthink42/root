@@ -177,7 +177,6 @@ public class PlatformerController : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collisionInfo) {
         isColliding = true;
-        Debug.Log("Collision!");
     }
 
     void OnCollisionExit2D(Collision2D collisionInfo) {
