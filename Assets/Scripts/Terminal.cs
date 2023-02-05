@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,15 @@ public class Terminal : MonoBehaviour
 
     private TMP_InputField inputField;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         inputField = gameObject.GetComponent<TMP_InputField>();
         inputField.text = oldView;
+    }
+
+    private void OnDisable()
+    {
+        
     }
 
     public void ValueChange()

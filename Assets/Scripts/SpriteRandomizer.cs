@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = System.Random;
 
@@ -9,9 +11,19 @@ public class SpriteRandomizer : MonoBehaviour
     private static Sprite[] _sprites;
     private static List<Sprite> _availableSprites;
     private static Random _random;
+    private GameObject outline;
+
+    private static GameObject _highlight;
     // Start is called before the first frame update
     void Start()
     {
+        if (_highlight == null)
+        {
+            _highlight = Resources.Load("highlight") as GameObject;
+        }
+
+        outline = Instantiate(_highlight, transform.position, transform.rotation);
+        outline.SetActive(false);
         if (_sprites == null)
         {
             _random = new Random();
@@ -27,5 +39,19 @@ public class SpriteRandomizer : MonoBehaviour
         int randomIndex = _random.Next(0, _availableSprites.Count);
         gameObject.GetComponent<SpriteRenderer>().sprite = _availableSprites[randomIndex];
         _availableSprites.RemoveAt(randomIndex);
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (!col.transform.CompareTag("Player"))
+            return;
+        outline.SetActive(true);
+    }
+
+    private void OnCollisionExit2D(Collision2D col)
+    {
+        if (!col.transform.CompareTag("Player"))
+            return;
+        outline.SetActive(false);
     }
 }
