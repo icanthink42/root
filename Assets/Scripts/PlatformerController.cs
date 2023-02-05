@@ -47,6 +47,8 @@ public class PlatformerController : MonoBehaviour {
     [SerializeField] private float wallColRadius;
     [SerializeField] private float width;
     [SerializeField] private LayerMask wallMask;
+    public static bool frozen = false;
+    private static bool spawned = false;
 
     bool timeLeftGroundChecked = false;
 
@@ -69,15 +71,27 @@ public class PlatformerController : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        if (spawned)
+        {
+            Destroy(gameObject);
+        }
+
+        spawned = true;
         rb = GetComponent<Rigidbody2D>();
         isJumping = false;
         lastJumpTime = -jumpBuffer;
         isColliding = false;
         _animationController = GetComponent<AnimationController>();
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
     void Update() {
+        if (frozen)
+        {
+            rb.velocity = Vector3.zero;
+            return;
+        }
         // Get input axes
         float horizontalInput = Input.GetAxis("Horizontal");
 
@@ -134,11 +148,11 @@ public class PlatformerController : MonoBehaviour {
         // Handle jumping
         vel = rb.velocity;
         
-        if (vel.x > 0)
+        if (vel.x > 0 && _animationController.currentAnimation != "jump" && _animationController.currentAnimation != "rebound")
         {
             _animationController.PlayAnimation("left");
         }
-        else if (vel.x < 0)
+        else if (vel.x < 0 && _animationController.currentAnimation != "jump" && _animationController.currentAnimation != "rebound")
         {
             _animationController.PlayAnimation("right");
         }
@@ -179,6 +193,7 @@ public class PlatformerController : MonoBehaviour {
     /// Jump script, resets velocity and adds jump force.
     /// </summary>
     void Jump() {
+        _animationController.PlayAnimation("jump");
         lastJumpTime = -jumpBuffer;
         vel.y = 0f;
         vel.y += jumpForce;
@@ -187,6 +202,7 @@ public class PlatformerController : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collisionInfo) {
         isColliding = true;
+        _animationController.PlayAnimation("rebound");
     }
 
     void OnCollisionExit2D(Collision2D collisionInfo) {

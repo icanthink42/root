@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = System.Random;
 
 public class SpriteRandomizer : MonoBehaviour
@@ -23,6 +24,7 @@ public class SpriteRandomizer : MonoBehaviour
         }
 
         outline = Instantiate(_highlight, transform.position, transform.rotation);
+        outline.transform.SetParent(transform);
         outline.SetActive(false);
         if (_sprites == null)
         {
@@ -46,6 +48,16 @@ public class SpriteRandomizer : MonoBehaviour
         if (!col.transform.CompareTag("Player"))
             return;
         outline.SetActive(true);
+        if (SceneManager.GetActiveScene().name == "Level3")
+        {
+            StartCoroutine(DropPlatform());
+        }
+    }
+    
+    IEnumerator DropPlatform()
+    {
+        yield return new WaitForSeconds (3.0f);
+        gameObject.AddComponent<Rigidbody2D>();
     }
 
     private void OnCollisionExit2D(Collision2D col)

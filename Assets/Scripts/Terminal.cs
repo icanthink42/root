@@ -18,11 +18,12 @@ public class Terminal : MonoBehaviour
     {
         inputField = gameObject.GetComponent<TMP_InputField>();
         inputField.text = oldView;
+        PlatformerController.frozen = true;
     }
 
     private void OnDisable()
     {
-        
+        PlatformerController.frozen = false;
     }
 
     public void ValueChange()

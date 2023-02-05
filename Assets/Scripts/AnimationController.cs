@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
-    private string currentAnimation;
+    public string currentAnimation;
     private int frame = 0;
     [System.Serializable]
     class Animation
