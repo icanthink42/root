@@ -31,6 +31,7 @@ public class PlatformerController : MonoBehaviour {
     [SerializeField] private float timeLeftGround;
     [SerializeField] private bool isJumping;
     [SerializeField] private bool isDoubleJumping;
+    private AnimationController _animationController;
 
     [Header("Ground Detection")]
     [SerializeField] private bool isColliding;
@@ -72,13 +73,13 @@ public class PlatformerController : MonoBehaviour {
         isJumping = false;
         lastJumpTime = -jumpBuffer;
         isColliding = false;
+        _animationController = GetComponent<AnimationController>();
     }
 
     // Update is called once per frame
     void Update() {
         // Get input axes
-        float horizontalInput = inputMove.ReadValue<Vector2>().x;
-        float verticalInput = inputMove.ReadValue<Vector2>().y;
+        float horizontalInput = Input.GetAxis("Horizontal");
 
         // Reset the horizontal speed if the player has stopped moving horizontally.
         horizontalSpeed = rb.velocity.x == 0 ? 0 : horizontalSpeed;
@@ -132,8 +133,17 @@ public class PlatformerController : MonoBehaviour {
 
         // Handle jumping
         vel = rb.velocity;
+        
+        if (vel.x > 0)
+        {
+            _animationController.PlayAnimation("left");
+        }
+        else if (vel.x < 0)
+        {
+            _animationController.PlayAnimation("right");
+        }
         vel.x = horizontalSpeed;
-        if (inputJump.WasPressedThisFrame()) {
+        if (Input.GetKeyDown(KeyCode.Space)) {
             lastJumpTime = Time.time;
         }
 
@@ -147,7 +157,7 @@ public class PlatformerController : MonoBehaviour {
 
         // Handle additional fall speed
         if (!isGrounded) {
-            if (rb.velocity.y < jumpFalloff || rb.velocity.y > 0 && !inputJump.IsPressed()) {
+            if (rb.velocity.y < jumpFalloff || rb.velocity.y > 0 && !Input.GetKeyDown(KeyCode.Space)) {
                 if (vel.y > 0f) {
                     //vel.y = 0f;
                 }
