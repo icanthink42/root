@@ -2874,7 +2874,7 @@ GameObject:
   - component: {fileID: 695782143}
   - component: {fileID: 695782142}
   - component: {fileID: 695782145}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Start
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -4988,7 +4988,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1361810099}
   - component: {fileID: 1361810098}
-  - component: {fileID: 1361810101}
   - component: {fileID: 1361810100}
   m_Layer: 0
   m_Name: terminal
@@ -5077,32 +5076,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terminal: {fileID: 915613982}
---- !u!61 &1361810101
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1361810097}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.6, y: 0.6}
-    newSize: {x: 0.6, y: 0.6}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.6}
-  m_EdgeRadius: 0
 --- !u!1 &1388628906
 GameObject:
   m_ObjectHideFlags: 0
@@ -5114,7 +5087,7 @@ GameObject:
   - component: {fileID: 1388628908}
   - component: {fileID: 1388628907}
   - component: {fileID: 1388628909}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: clock
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -5349,7 +5322,7 @@ GameObject:
   - component: {fileID: 1472469892}
   - component: {fileID: 1472469891}
   - component: {fileID: 1472469893}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: bar
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -5731,7 +5704,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.05494485}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5742,7 +5715,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.55, y: 0.55}
+  m_Size: {x: 0.275, y: 0.2331373}
   m_EdgeRadius: 0.2
 --- !u!212 &1636218682
 SpriteRenderer:
@@ -5805,7 +5778,7 @@ Transform:
   m_GameObject: {fileID: 1636218679}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.4828212, y: -0.082758665, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -5863,7 +5836,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  maxSpeed: 8
+  maxSpeed: 4
   horizontalSpeed: 0
   verticalSpeed: 0
   vel: {x: 0, y: 0}
@@ -5903,14 +5876,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 1636218679}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21b3118a60ef4924e8d3111e3c0d29d3, type: 3}
+  m_Script: {fileID: 11500000, guid: bdcb7a689d0c74e1fa2b37b1ffe08872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 2
-  sprintSpeed: 4
-  jumpForce: 3
-  doubleJumpMult: 1.5
-  sideJumpThreshold: 0.9
+  _frames:
+  - name: default
+    frames:
+    - {fileID: 21300000, guid: cc6efa86c121723bda18cb615fb5b4d2, type: 3}
+    - {fileID: 21300000, guid: 68a168425b9fb1d5a91ae5cdb069fe13, type: 3}
+    - {fileID: 21300000, guid: a98e9a52bcb6df7af98528e8a48d093c, type: 3}
+    - {fileID: 21300000, guid: a951719a04098f5e08c642976e9b33c3, type: 3}
+    - {fileID: 21300000, guid: f30c99d2c5f22cc08a60cd65c197187f, type: 3}
+    - {fileID: 21300000, guid: be7caf417e2bf5902ac100fb74bd5b34, type: 3}
+    - {fileID: 21300000, guid: 54982b18e1bde85718830dacf7da2572, type: 3}
+    - {fileID: 21300000, guid: 170ffb2331b8ae13f99a5ba73eace38c, type: 3}
+    - {fileID: 21300000, guid: de79fc50456381069929637be4f31698, type: 3}
+    - {fileID: 21300000, guid: 61145ca30a309f1bb9f48b34ae02b543, type: 3}
+    - {fileID: 21300000, guid: de79fc50456381069929637be4f31698, type: 3}
+    - {fileID: 21300000, guid: 170ffb2331b8ae13f99a5ba73eace38c, type: 3}
+    frameTime: 0.25
+    onFinish: default
+  - name: right
+    frames:
+    - {fileID: 21300000, guid: 6b6ee01599d8f9c3993502a1dcf8cf52, type: 3}
+    - {fileID: 21300000, guid: d691c35f175dab29ca890a7fb1b99296, type: 3}
+    frameTime: 0.1
+    onFinish: default
+  - name: left
+    frames:
+    - {fileID: 21300000, guid: d691c35f175dab29ca890a7fb1b99296, type: 3}
+    - {fileID: 21300000, guid: 6b6ee01599d8f9c3993502a1dcf8cf52, type: 3}
+    frameTime: 0.1
+    onFinish: default
 --- !u!1 &1655261520
 GameObject:
   m_ObjectHideFlags: 0
